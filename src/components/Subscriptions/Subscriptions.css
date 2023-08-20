@@ -13,6 +13,9 @@
   align-items: center;
   column-gap: 10px;
 }
+.edit-button {
+  background-color: var(--clr-pumpkin); /* You can adjust the color as needed */
+}
 .grid-c5 .grid-item-l .icon {
   background-color: rgb(254, 30, 0, 0.15);
   width: 32px;

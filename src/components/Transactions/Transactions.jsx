@@ -1,38 +1,71 @@
-import "./Transactions.css";
-import { transactions } from "../../data/data";
 import { iconsImgs } from "../../utils/images";
+import "./Transactions.css";
+import {useEffect, useState} from "react";
+import ipAddress from "../../ipAddress.jsx";
 
-const Transactions = () => {
-  return (
-    <div className="grid-one-item grid-common grid-c2">
-        <div className="grid-c-title">
-            <h3 className="grid-c-title-text">All Transactions</h3>
-            <button className="grid-c-title-icon">
-                <img src={ iconsImgs.plus } />
-            </button>
-        </div>
+const Cards = () => {
+    const [earnings, setEarnings] = useState(0);
+    const request = {
+        "id": "63c3cc724a4ed3fd4bc79cfb"
+    };
 
-        <div className="grid-content">
-            <div className="grid-items">
-                {
-                    transactions.map((transaction) => (
-                        <div className="grid-item" key = { transaction.id }>
-                            <div className="grid-item-l">
-                                <div className="avatar img-fit-cover">
-                                    <img src={ transaction.image } alt="" />
-                                </div>
-                                <p className="text">{ transaction.name } <span>{ transaction.date }</span></p>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-scarlet">$ { transaction.amount }</span>
-                            </div>
-                        </div>
-                    ))
-                }
+    const options = {
+        method: "POST",
+        body: JSON.stringify(request),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    useEffect(() => {
+        // Fetch earnings data from the API
+        const baseUrl = ipAddress;
+        async function fetchEarnings() {
+            try {
+                const totalEarningsResponse = await fetch(baseUrl + '/getTotalExpense', options);
+                const totalEarningsData = await totalEarningsResponse.json();
+                const totalEarnings = totalEarningsData[0].total_expense;
+                setEarnings(totalEarnings);
+            } catch (error) {
+                console.error("Error fetching earnings:", error);
+            }
+        }
+        console.log("abc" + earnings)
+        fetchEarnings();
+    }, []);
+
+    return (
+        <div className="grid-one-item grid-common grid-c1">
+            <div className="grid-c-title">
+                <h3 className="grid-c-title-text">Expense</h3>
+                <button className="grid-c-title-icon">
+                    <img src={ iconsImgs.plus } onClick={() => window.location.href = '/addExpense'}/>
+                </button>
+            </div>
+            <div className="grid-c1-content">
+                <p>Earnings</p>
+                <div className="lg-value">{earnings}</div>
+                <div className="card-wrapper">
+                    <span className="card-pin-hidden">**** **** **** </span>
+                    <span>1234</span>
+                </div>
+                <div className="card-logo-wrapper">
+                    <div>
+                        <p className="text text-silver-v1 expiry-text">Expires</p>
+                        <p className="text text-sm text-white">12/22</p>
+                    </div>
+                    <div className="card-logo">
+                        <div className="logo-shape1"></div>
+                        <div className="logo-shape2"></div>
+                    </div>
+                    <div className="card-wrapper">
+                        <span className="card-pin-hidden">{earnings}</span>
+                    </div>
+                </div>
+
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
-export default Transactions
+export default Cards

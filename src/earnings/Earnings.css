@@ -1,0 +1,106 @@
+/* grid c4 */
+.grid-c4 .grid-c-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid-c4-content {
+    border-radius: 16px;
+    padding: 12px; /* Adjust padding as needed */
+    width: 100%; /* Set width to 100% to fill the available width */
+    max-width: 1200px; /* Set a maximum width to avoid excessive width on larger screens */
+    margin: 0 auto; /* Center the content horizontally */
+    box-sizing: border-box; /* Include padding in the width */
+}
+.wide-column {
+    width: 30%; /* Adjust the width as needed */
+}
+
+/* Styling the Checkbox */
+.grid-item-l input[type="checkbox"] {
+    appearance: none; /* Hide default checkbox appearance */
+    -webkit-appearance: none; /* For Safari */
+    width: 20px; /* Set the width of the custom checkbox */
+    height: 20px; /* Set the height of the custom checkbox */
+    border: 1px solid var(--clr-silver-v1); /* Add a border to the checkbox */
+    border-radius: 4px; /* Add some border radius for a rounded look */
+    background-color: transparent; /* Transparent background */
+    outline: none; /* Remove outline on focus */
+    cursor: pointer; /* Show pointer cursor */
+    transition: border-color 0.3s, background-color 0.3s; /* Add transition effects */
+}
+
+.grid-item-l input[type="checkbox"]:checked {
+    border-color: var(--clr-pumpkin); /* Change border color when checked */
+    background-color: var(--clr-pumpkin); /* Change background color when checked */
+}
+
+.grid-item-l input[type="checkbox"]:checked::before {
+    content: "\2713"; /* Unicode checkmark symbol */
+    display: inline-block;
+    width: 20px; /* Match checkbox width */
+    height: 20px; /* Match checkbox height */
+    text-align: center;
+    line-height: 20px; /* Match checkbox height */
+    font-size: 14px;
+    color: var(--clr-white); /* Set the color to white */
+}
+
+
+/* Edit and Delete Buttons */
+.edit-button,
+.delete-button {
+    background-color: var(--clr-primary);
+    color: var(--clr-white);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: var(--transition-default);
+}
+
+.edit-button {
+    background-color: var(--clr-pumpkin); /* You can adjust the color as needed */
+}
+
+.edit-button:hover,
+.delete-button:hover {
+    background-color: var(--clr-primar-light);
+}
+
+
+.grid-c4 .grid-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.grid-c4 .grid-item-l {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 16px;
+}
+
+.grid-c4 .grid-item-l .icon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.grid-c4 .grid-item-l .icon img {
+    width: 20px;
+}
+
+.grid-c4 .grid-item-l .text {
+    font-weight: 600;
+}
+
+.grid-c4 .grid-item-l .text span {
+    font-weight: 300;
+    font-size: 15px;
+    display: block;
+    margin-top: 5px;
+    opacity: 0.9;
+}

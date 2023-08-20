@@ -7,6 +7,7 @@ import Subscriptions from "../Subscriptions/Subscriptions";
 import Savings from "../Savings/Savings";
 import Loans from "../Loans/Loans";
 import Financial from "../Financial/Financial";
+import PieChartBox from "../../piechart/PieChart";
 
 const ContentMain = () => {
   return (
@@ -14,7 +15,7 @@ const ContentMain = () => {
         <div className="content-grid-one">
             <Cards />
             <Transactions />
-            <Report />
+            <PieChartBox />
         </div>
         <div className="content-grid-two">
             <Budget />
@@ -27,7 +28,6 @@ const ContentMain = () => {
 
             <div className="grid-two-item">
               <div className="subgrid-two">
-                <Loans />
                 <Financial />
               </div>
             </div>

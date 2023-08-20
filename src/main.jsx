@@ -1,9 +1,13 @@
-import ReactDOM from 'react-dom/client'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import { SidebarProvider } from './context/sidebarContext.jsx';
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <SidebarProvider>
-    <App />
-  </SidebarProvider>
-)
+ReactDOM.hydrate(
+    <React.StrictMode>
+        <SidebarProvider>
+            <App />
+        </SidebarProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);

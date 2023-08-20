@@ -1,0 +1,73 @@
+/* grid c4 */
+.grid-c4 .grid-c-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.grid-c4-content {
+    border-radius: 16px;
+    padding: 12px; /* Adjust padding as needed */
+    width: 100%; /* Set width to 100% to fill the available width */
+    max-width: 1200px; /* Set a maximum width to avoid excessive width on larger screens */
+    margin: 0 auto; /* Center the content horizontally */
+    box-sizing: border-box; /* Include padding in the width */
+}
+.wide-column {
+    width: 26%; /* Adjust the width as needed */
+}
+
+
+
+.grid-c4 .grid-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 24px;
+}
+
+.grid-c4 .grid-item-l {
+    display: flex;
+    align-items: flex-start;
+    column-gap: 10px;
+}
+
+.orange-button {
+    background-color: orange;
+    border: none;
+    padding: 3px;
+    border-radius: 12px;
+    cursor: pointer;
+    /* Add any other styling as needed */
+}
+
+.grid-c4 .grid-item-l .icon {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.grid-c4 .grid-item-l .icon img {
+    width: 18px;
+}
+
+.grid-c4 .grid-item-l .text {
+    font-weight: 600;
+}
+
+.grid-c4 .grid-item-l .text span {
+    font-weight: 300;
+    font-size: 15px;
+    display: block;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+
+.export-button {
+    font-weight: 300;
+    font-size: 15px;
+    display: block;
+    margin-top: 5px;
+    opacity: 0.9;
+}
+

@@ -2,16 +2,16 @@ import { iconsImgs } from "../utils/images";
 import { personsImgs } from "../utils/images";
 
 export const navigationLinks = [
-    { id: 1, title: 'Home', image: iconsImgs.home },
-    { id: 2, title: 'Budget', image: iconsImgs.budget },
-    { id: 3, title: 'Transactions', image: iconsImgs.plane },
-    { id: 4, title: 'Subscriptions', image: iconsImgs.wallet },
-    { id: 5, title: 'Loans', image: iconsImgs.bills },
-    { id: 6, title: 'Reports', image: iconsImgs.report },
+    { id: 1, title: 'Home', image: iconsImgs.home, url: "/" },
+    { id: 2, title: 'Earnings', image: iconsImgs.budget, url: "earnings" },
+    { id: 3, title: 'Expenses', image: iconsImgs.budget, url: "expenses" },
+    { id: 4, title: 'Subscriptions', image: iconsImgs.wallet, url: "subscriptions"},
+    { id: 5, title: 'Board', image: iconsImgs.bills, url: "board" },
+    { id: 6, title: 'Calendar', image: iconsImgs.report, url: "calendar" },
     { id: 7, title: 'Savings', image: iconsImgs.wallet },
     { id: 8, title: 'Financial Advice', image: iconsImgs.wealth },
-    { id: 9, title: 'Account', image: iconsImgs.user },
-    { id: 10, title: 'Settings', image: iconsImgs.gears }
+    { id: 9, title: 'Savings', image: iconsImgs.gears },
+    { id: 10, title: 'Logout', image: iconsImgs.user }
 ];
 
 export const transactions = [
