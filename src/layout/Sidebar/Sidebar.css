@@ -1,6 +1,6 @@
 /* sidebar */
 .sidebar {
-    background-color: var(--clr-primary);
+    background-color: #222528;
     width: 260px;
     padding: 36px 20px;
     transition: var(--transition-default);
@@ -52,6 +52,7 @@
   .nav-item {
     margin-bottom: 10px;
     margin-right: 4px;
+    color: white;
   }
   .nav-link {
     height: 44px;

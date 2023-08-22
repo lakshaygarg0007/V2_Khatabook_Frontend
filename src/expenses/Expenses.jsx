@@ -145,7 +145,7 @@ const Earnings = ({ aspect, title }) => {
                                     </div>
                                 </div>
                                 <div className="grid-item-r">
-                                    <span className="text-silver-v1">$ {budgetItem.Amount}</span>
+                                    <span className="text-silver-v1 ">$ {budgetItem.Amount}</span>
                                 </div>
                                 <div className="grid-item-r">
                                     <span className="text-silver-v1 wide-column">{budgetItem.description}</span>

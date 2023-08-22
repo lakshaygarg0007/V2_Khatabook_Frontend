@@ -8,10 +8,8 @@ export const navigationLinks = [
     { id: 4, title: 'Subscriptions', image: iconsImgs.wallet, url: "subscriptions"},
     { id: 5, title: 'Board', image: iconsImgs.bills, url: "board" },
     { id: 6, title: 'Calendar', image: iconsImgs.report, url: "calendar" },
-    { id: 7, title: 'Savings', image: iconsImgs.wallet },
-    { id: 8, title: 'Financial Advice', image: iconsImgs.wealth },
-    { id: 9, title: 'Savings', image: iconsImgs.gears },
-    { id: 10, title: 'Logout', image: iconsImgs.user }
+    { id: 7, title: 'Stocks', image: iconsImgs.wallet, url: "stocks" },
+    { id: 10, title: 'Logout', image: iconsImgs.user, url: "logout" }
 ];
 
 export const transactions = [

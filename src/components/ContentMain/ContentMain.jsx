@@ -8,6 +8,9 @@ import Savings from "../Savings/Savings";
 import Loans from "../Loans/Loans";
 import Financial from "../Financial/Financial";
 import PieChartBox from "../../piechart/PieChart";
+import StockPrices from "../../stocks/Stocks";
+import StockPrices1 from "../../stocks/Stocks1.jsx";
+import Calender1 from "../../calender/Calender1.jsx";
 
 const ContentMain = () => {
   return (
@@ -18,7 +21,9 @@ const ContentMain = () => {
             <PieChartBox />
         </div>
         <div className="content-grid-two">
-            <Budget />
+            <div className="grid-two-item">
+            <Calender1 />
+            </div>
             <div className="grid-two-item">
               <div className="subgrid-two">
                 <Subscriptions />
@@ -28,7 +33,7 @@ const ContentMain = () => {
 
             <div className="grid-two-item">
               <div className="subgrid-two">
-                <Financial />
+                <StockPrices1 />
               </div>
             </div>
         </div>

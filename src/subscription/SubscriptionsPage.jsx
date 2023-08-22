@@ -63,16 +63,16 @@ const Subscriptions = () => {
                                     <div className="icon">
                                         <img src={iconsImgs.alert} alt="Alert" onClick={() => window.location.href = '/addSubscriptions'}/>
                                     </div>
-                                    <p className="text text-silver-v1">{subscription.subscription}</p>
+                                    <p className=" text-black">{subscription.subscription}</p>
                                 </div>
                                 <div>
-                                    <span className="text text-silver-v1">{subscription.amount}</span>
+                                    <span className="text text-black">{subscription.amount}</span>
                                 </div>
                                 <div>
-                                    <span className="text text-silver-v1">{new Date(subscription.start_date).toLocaleDateString("en-GB")}</span>
+                                    <span className="text text-black">{new Date(subscription.start_date).toLocaleDateString("en-GB")}</span>
                                 </div>
                                 <div>
-                                    <span className="text text-silver-v1">{new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
+                                    <span className="text text-black">{new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
                                 </div>
                             </div>
                         ))}

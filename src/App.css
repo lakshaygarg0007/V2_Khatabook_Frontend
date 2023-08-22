@@ -58,6 +58,9 @@ button {
 .text-scarlet {
   color: var(--clr-scarlet);
 }
+.text-black {
+  color: black
+}
 .text-green {
   color: var(--clr-green);
 }
@@ -80,7 +83,7 @@ button {
   font-weight: 600;
 }
 .grid-common {
-  background-color: var(--clr-primary);
+  background-color: white;
   border-radius: 12px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 8px 24px;
   color: var(--clr-white);
@@ -94,7 +97,7 @@ button {
 }
 .grid-c-title-text {
   font-weight: 400;
-  color: var(--clr-silver);
+  color: black
 }
 .grid-c-title-icon img {
   width: 24px;

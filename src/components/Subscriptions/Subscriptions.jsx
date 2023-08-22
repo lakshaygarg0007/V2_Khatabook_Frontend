@@ -51,11 +51,11 @@ const Subscriptions = () => {
                                 <div className="icon">
                                     <img src={ iconsImgs.alert } />
                                 </div>
-                                <p className="text text-silver-v1">{ subscription.subscription } <span>
+                                <p className="text-black">{ subscription.subscription } <span>
                                         </span></p>
                             </div>
                             <div >
-                                <span className="text text-silver-v1">Till { new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
+                                <span className="text text-black">Till { new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
                             </div>
                         </div>
                     ))

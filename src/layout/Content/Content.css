@@ -1,5 +1,5 @@
 .main-content {
-    background-color: var(--clr-secondary);
+    background-color: #f2f2f6;
     flex: 1;
     padding: 32px;
   }
@@ -19,3 +19,8 @@
       padding-left: 16px;
     }
   }
+
+/* styles.css (or your CSS file) */
+.red-price {
+  color: red;
+}

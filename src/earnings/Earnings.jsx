@@ -114,13 +114,13 @@ const Earnings = () => {
                                 <div className="icon"></div>
                             </div>
                             <div className="grid-item-r">
-                                <span className="text-silver-v1 ">Amount</span>
+                                <span className="text-black ">Amount</span>
                             </div>
                             <div className="grid-item-r">
-                                <span className="text-silver-v1">Description</span>
+                                <span className="text-black">Description</span>
                             </div>
                             <div className="grid-item-r">
-                                <span className="text-silver-v1">Payment Method</span>
+                                <span className="text-black">Payment Method</span>
                             </div>
                             <div className="grid-item-r">
                                 <span className="text-silver-v1">Date</span>

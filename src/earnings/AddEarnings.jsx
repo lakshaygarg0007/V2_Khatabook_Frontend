@@ -80,80 +80,71 @@ const AddEarning = (callback, deps) => {
         <div className="main-content">
             <ContentTop />
             <div className="grid-two-item grid-common grid-c4">
-                <div className="grid-c-title">
-                    <h3 className="grid-c-title-text">Add New Earning</h3>
-                </div>
-                <div>
-                    <div className="grid-items">
-                        <div className="grid-item heading">
-                            <div className="grid-item-l">
-                                <div className="icon"></div>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-silver-v1 ">Amount</span>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-silver-v1">Description</span>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-silver-v1">Payment Method</span>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-silver-v1">Date</span>
-                            </div>
-                        </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div>
+                        <label htmlFor="amount" className="block text-gray-700 mb-2">Amount</label>
+                        <input
+                            type="text"
+                            id="amount"
+                            className="w-full text-black placeholder-black border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
+                            placeholder="Amount"
+                            value={amount}
+                            onChange={(e) => set_amount(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="description" className="block text-gray-700 mb-2">Description</label>
+                        <input
+                            type="text"
+                            id="description"
+                            className="w-full text-black placeholder-black border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
+                            placeholder="Description"
+                            value={description}
+                            onChange={(e) => set_description(e.target.value)}
+                        />
+                    </div>
+
+                    <div>
+                        <label htmlFor="payment_method" className="block text-gray-700 mb-2">Payment Method</label>
+                        <select
+                            id="payment_method"
+                            className="w-full text-black placeholder-black border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
+                            value={payment_method}
+                            onChange={(e) => set_payment_method(e.target.value)}
+                        >
+                            {payment_methods.map(payment_method => (
+                                <option key={payment_method.payment_methods} value={payment_method.payment_methods}>
+                                    {payment_method.payment_methods}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label htmlFor="date" className="block text-gray-700 mb-2">Date</label>
+                        <input
+                            type="date"
+                            id="date"
+                            className="w-full text-black placeholder-black border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
+                            value={date}
+                            onChange={(e) => set_date(e.target.value)}
+                        />
                     </div>
                 </div>
 
-
-                <div>
-                    <div className="grid-items">
-                        <form>
-                            <div className="grid-item heading">
-                            <div className="grid-item-l"></div>
-                            <div className="grid-item-r">
-                                <input
-                                    type="text"
-                                    placeholder="Amount"
-                                    onChange={(e) => set_amount(e.target.value)}
-                                />
-                            </div>
-                            <div className="grid-item-r">
-                                <input
-                                    type="text"
-                                    placeholder="Description"
-                                    onChange={(e) => set_description(e.target.value)}
-                                />
-                            </div>
-                            <div className="grid-item-r">
-                                <select id = "payment_method" onChange={(e) => set_payment_method(e.target.value)} className="form-select custom-select" >
-                                    {
-                                        payment_methods.map(payment_method => (
-                                            <option key="{payment_method.payment_methods}"  value={payment_method.payment_methods} className="py-2"> {payment_method.payment_methods}</option>
-                                        ))
-                                    };
-                                </select>
-                            </div>
-                            <div className="grid-item-r">
-                                <input
-                                    type="date"
-                                    placeholder="Date"
-                                    onChange={(e) => set_date(e.target.value)}
-                                />
-                            </div>
-                            </div>
-                        </form>
-                    </div>
+                {/* Add Expense Button */}
+                <div className="mt-4">
+                    <button
+                        className="edit-button flex mx-auto text-white border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
+                        onClick={add_record}
+                    >
+                        Add Earning
+                    </button>
                 </div>
-
-                <button className="edit-button" onClick={() => { add_record(); }}>
-                    Add Earning
-                </button>
-
             </div>
+        </div>
 
-
-    </div>
 );
 };
 
