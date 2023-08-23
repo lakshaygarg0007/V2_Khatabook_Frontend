@@ -7,6 +7,7 @@ import useCalendar from "../utils/Calender.js";
 import ContentTop from "../components/ContentTop/ContentTop.jsx";
 import React, { useEffect } from "react";
 import ipAddress from "../ipAddress.jsx";
+import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
 const Calendar = () => {
     const { currentEvents, fetchAndSetEvents } = useCalendar()
@@ -75,10 +76,12 @@ const Calendar = () => {
     };
 
     return (
+        <><Sidebar/>
         <div className="main-content">
             <ContentTop />
             <div className="grid-two-item grid-common grid-c4">
                 <div className="calendar-container">
+                    <h3 className="grid-c-title-text text-black">Calendar</h3>
                     <div>
                         <FullCalendar
                             plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
@@ -110,6 +113,7 @@ const Calendar = () => {
                 </div>
             </div>
         </div>
+            </>
     );
 };
 

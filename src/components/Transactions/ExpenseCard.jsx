@@ -3,10 +3,12 @@ import "./Transactions.css";
 import {useEffect, useState} from "react";
 import ipAddress from "../../ipAddress.jsx";
 
-const Cards = () => {
+const ExpenseCard = () => {
     const [earnings, setEarnings] = useState(0);
+    const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const userData = JSON.parse(user_data)
     const request = {
-        "id": "63c3cc724a4ed3fd4bc79cfb"
+        "id": userData.id
     };
 
     const options = {
@@ -37,7 +39,7 @@ const Cards = () => {
     return (
         <div className="grid-one-item grid-common grid-c1">
             <div className="grid-c-title">
-                <h3 className="grid-c-title-text">Expense</h3>
+                <h3 className="grid-c-title-text text-black">Expense</h3>
                 <button className="grid-c-title-icon">
                     <img src={ iconsImgs.plus } onClick={() => window.location.href = '/addExpense'}/>
                 </button>
@@ -68,4 +70,4 @@ const Cards = () => {
     )
 }
 
-export default Cards
+export default ExpenseCard

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import Sidebar from './layout/Sidebar/Sidebar';
 import Content from './layout/Content/Content';
@@ -19,17 +19,24 @@ import StockPrices from "./stocks/Stocks";
 import Logout from "./logout/Logout";
 import Goto from "./GoTo";
 import Signup from "./signup/Signup";
+import EditEarning from "./earnings/EditEarning";
+import {useState} from "react";
 
 function App() {
     const isLoginRoute = window.location.pathname === "/login";
     const isSignUpRoute =  window.location.pathname === "/signup"; // Check if the current route is the login route
+    //const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const [user_data, setUserData] = useState(null);
+
+    useEffect(() => {
+        const userDataFromSession = sessionStorage.getItem('user_data');
+        setUserData(userDataFromSession)
+    }, []);
 
     return (
         <Router>
             <div className='app'>
-                {!isLoginRoute && !isSignUpRoute && <Sidebar />} {/* Render Sidebar on all routes except login */}
                 <Routes>
-                    <Route path="/" element={<Goto />} />
                     <Route path="/earnings" element={<Earnings />} />
                     <Route path="/expenses" element={<Expenses />} />
                     <Route path="/addEarning" element={<AddEarning />} />
@@ -39,10 +46,14 @@ function App() {
                     <Route path="/subscriptions" element={<SubscriptionsPage />} />
                     <Route path="/addSubscriptions" element={<AddSubscription />} />
                     <Route path="/profile" element={<Profile />} />
-                    <Route path="/login" element={<Login />} />
                     <Route path="/stocks" element={<StockPrices />} />
                     <Route path="/logout" element={<Logout />} />
                     <Route path="/signup" element={<Signup />} />
+                    <Route path="/editEarning" element={<EditEarning />} />
+                </Routes>
+                <Routes>
+                    <Route path="/" element={<Goto />} />
+                    <Route path="/login" element={<Login />} />
                 </Routes>
             </div>
         </Router>

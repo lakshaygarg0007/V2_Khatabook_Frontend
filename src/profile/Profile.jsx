@@ -7,14 +7,6 @@ const Users = () => {
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
 
-    const user = {
-        username: "Johndoe99",
-        fullName: "John Doe",
-        email: "johndoe@gmail.com",
-        phone: "456 789",
-        status: "verified"
-    };
-
     return (
         <div className="main-content">
             <ContentTop />

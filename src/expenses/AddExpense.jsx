@@ -14,6 +14,8 @@ const AddExpense = () => {
     const [description, set_description] = useState("");
     const [date, set_date] = useState("");
     const [payment_method, set_payment_method] = useState("UPI");
+    const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const userData = JSON.parse(user_data)
 
     useEffect(() => {
         async function fetchPaymentMethods() {
@@ -32,7 +34,7 @@ const AddExpense = () => {
         }
 
         const data = {
-            "user_id": "63c3cc724a4ed3fd4bc79cfb",
+            "user_id": userData.id,
             "amount": amount,
             "description": description,
             "payment_method": payment_method,

@@ -97,11 +97,29 @@ button {
 }
 .grid-c-title-text {
   font-weight: 400;
-  color: black
 }
 .grid-c-title-icon img {
   width: 24px;
+  color: black;
 }
+
+/* Subscriptions.css */
+
+.subscriptions-heading {
+  font-size: 1.2rem; /* Adjust the font size as needed */
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  /* Add any additional styling you want for the heading */
+}
+
+/* styles.css */
+.heading-1 {
+  font-size: 28px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+
 
 @media screen and (max-width: 1400px) {
   .grid-common {
@@ -111,3 +129,5 @@ button {
     font-size: 14px !important;
   }
 }
+
+

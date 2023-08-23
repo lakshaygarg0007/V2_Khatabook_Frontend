@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import ContentTop from "../components/ContentTop/ContentTop.jsx";
+import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
 const StockPrices = () => {
     const [stockData, setStockData] = useState([]);
@@ -44,28 +45,31 @@ const StockPrices = () => {
 
 
     return (
-        <div className="main-content">
-            <ContentTop />
-            <div className="grid-two-item grid-common grid-c4">
-                <h2>Latest Stock Prices</h2>
-                <br/>
-                {Object.keys(stockSymbolToName).map(symbol => (
-                    <div>
-                    <div className="grid-c1-content">
-                    <div key={symbol}>
-                        <h3>{stockSymbolToName[symbol]}</h3>
-                        {stockData[symbol] && stockData[symbol].c !== undefined ? (
-                            <p>Current Price: <span className="red-price"> ${stockData[symbol].c}</span></p>
-                        ) : (
-                            <p>Loading...</p>
-                        )}
-                    </div>
-                    </div>
-                        <br/>
-                    </div>
-                ))}
+        <>
+            <Sidebar/>
+            <div className="main-content">
+                <ContentTop/>
+                <div className="grid-two-item text-black  grid-common grid-c4">
+                    <h2 className="heading-1">Latest Stock Prices</h2>
+                    <br/>
+                    {Object.keys(stockSymbolToName).map(symbol => (
+                        <div>
+                            <div className="grid-c1-content ">
+                                <div key={symbol}>
+                                    <h3>{stockSymbolToName[symbol]}</h3>
+                                    {stockData[symbol] && stockData[symbol].c !== undefined ? (
+                                        <p>Current Price: <span className="red-price"> ${stockData[symbol].c}</span></p>
+                                    ) : (
+                                        <p>Loading...</p>
+                                    )}
+                                </div>
+                            </div>
+                            <br/>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 

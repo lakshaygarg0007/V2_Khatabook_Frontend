@@ -1,6 +1,6 @@
 import "./ContentMain.css";
-import Cards from "../Cards/Cards";
-import Transactions from "../Transactions/Transactions";
+import EarningCard from "../Cards/EarningCard.jsx";
+import Transactions from "../Transactions/ExpenseCard.jsx";
 import Report from "../Report/Report";
 import Budget from "../Budget/Budget";
 import Subscriptions from "../Subscriptions/Subscriptions";
@@ -16,7 +16,7 @@ const ContentMain = () => {
   return (
     <div className="main-content-holder">
         <div className="content-grid-one">
-            <Cards />
+            <EarningCard />
             <Transactions />
             <PieChartBox />
         </div>

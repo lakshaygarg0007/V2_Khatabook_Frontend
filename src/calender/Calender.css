@@ -3,6 +3,7 @@
     width: 90%;
     padding: 0rem 5rem;
     max-width: 1100px;
+    color: black;
 }
 .fc-event{
     background: var(--orange-gradient)!important;
@@ -11,5 +12,50 @@
     height: 2.0rem!important;
 }
 td{
-    border : 1px solid white !important
+    border : 1px solid black !important
+}
+
+/* Calender.css */
+
+/* Style the header buttons for changing views */
+.fc-header-toolbar .fc-button-group {
+    margin-right: 10px; /* Add some spacing between the buttons */
+}
+
+/* Style the active view button */
+.fc-header-toolbar .fc-button-group button.fc-button-primary {
+    background-color: #3f60d5; /* Update the background color when active */
+    border-color: #3f60d5; /* Update the border color when active */
+    color: white; /* Change the text color to white */
+}
+
+/* Style the non-active view buttons */
+.fc-header-toolbar .fc-button-group button.fc-button {
+    background-color: transparent; /* Make the background transparent */
+    border-color: #333; /* Change the border color */
+    color: #333; /* Change the text color */
+}
+
+/* Change background and text color when button is hovered */
+.fc-header-toolbar .fc-button-group button.fc-button:hover {
+    background-color: #3956c1; /* Update the background color on hover */
+    border-color: #3956c1; /* Update the border color on hover */
+    color: white; /* Change the text color to white on hover */
+}
+
+/* Style the current date indicator */
+.fc-highlight {
+    background-color: #3f60d5; /* Update the background color of the indicator */
+    opacity: 0.5; /* Adjust the opacity */
+}
+
+/* Style the header title */
+.fc-toolbar-title {
+    color: white; /* Change the text color of the title */
+}
+
+/* Style the day header cells */
+.fc-day-header {
+    background-color: #444; /* Change the background color of day headers */
+    color: white; /* Change the text color of day headers */
 }

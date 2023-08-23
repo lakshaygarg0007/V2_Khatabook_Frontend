@@ -12,60 +12,24 @@ const options = {
 export const boardData = {
     columns: [
         {
-            status: "Backlog",
-            cards: [
-                {
-                    title: "Database Setup",
-                    description: "Firebase Integration"
-                },
-                {
-                    title: "Data Flow",
-                    description: "Setup Diagram with other developers"
-                },
-            ]
+            "id": 1,
+            "status": "TODO",
+            "cards": []
         },
         {
-            id: 2,
-            status: "TODO",
-            cards: [
-                {
-                    id: 9,
-                    title: "Data Table Page",
-                    description: "Server side Pagination",
-                }
-            ]
+            "id": 2,
+            "status": "IN_PROGRESS",
+            "cards": []
         },
         {
-            id: 3,
-            status: "Doing",
-            cards: [
-                {
-                    id: 10,
-                    title: "Full Calendar Extension",
-                    description: "Make new events and store in global states"
-                },
-                {
-                    id: 11,
-                    title: "Custom Kanban Board",
-                    description: "Setup react-kanban dep within Dashboard as seperate page"
-                }
-            ]
+            "id": 3,
+            "status": "REVIEW",
+            "cards": []
         },
         {
-            id: 4,
-            status: "Completed",
-            cards: [
-                {
-                    id: 12,
-                    title: "Vite Server Setup",
-                    description: "Configure required modules and starters",
-                },
-                {
-                    id: 13,
-                    title: "Modular structre",
-                    description: "Write css in form of modules to reduce the naming conflicts"
-                }
-            ]
+            "id": 4,
+            "status": "DONE",
+            "cards": []
         }
     ]
 }

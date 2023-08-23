@@ -14,9 +14,11 @@ const data = [
 const PieChartBox = () => {
 
     const [pieChartData, setPieChartData] = useState([]);
+    const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const userData = JSON.parse(user_data)
 
     const request1 = {
-        "user_id": "63c3cc724a4ed3fd4bc79cfb"
+        "user_id": userData.id
     };
 
     const options1 = {
@@ -45,11 +47,12 @@ const PieChartBox = () => {
     return (
         <div className="subgrid-two-item grid-common grid-c5">
         <div className="pieChartBox">
+            <h3 className="grid-c-title-text text-black">Expenses Diff</h3>
             <div>
                 <ResponsiveContainer width="99%" height={300}>
                     <PieChart>
                         <Tooltip
-                            contentStyle={{ background: "white", borderRadius: "5px" }}
+                            contentStyle={{ background: "black", borderRadius: "5px" }}
                         />
                         <Pie
                             data={pieChartData}
@@ -68,11 +71,11 @@ const PieChartBox = () => {
             <div className="options">
                 {pieChartData.map((item, index) => (
                     <div className="option" key={index}>
-                        <div className="title">
+                        <div className="title text-black">
                             <div className="dot" style={{ backgroundColor: item.color }} />
                             <span>{item.payment_method}</span>
                         </div>
-                        <span>{item.amount}</span>
+                        <span className="text-black">{item.amount}</span>
                     </div>
                 ))}
             </div>

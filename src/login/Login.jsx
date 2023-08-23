@@ -55,8 +55,8 @@ export default function Login(props) {
             <div className="main-content">
                 <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
                     <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-                        <h1 className="title-font font-medium text-3xl text-white">KhataBook</h1>
-                        <p className="leading-relaxed mt-4 text-white">Manage All Your Expenese Here</p>
+                        <h1 className="title-font font-medium text-3xl text-black">KhataBook</h1>
+                        <p className="leading-relaxed mt-4 text-black">Manage All Your Expenese Here</p>
                     </div>
                     <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
                         <h2 className="text-gray-900 text-lg font-medium title-font mb-5">Login</h2>

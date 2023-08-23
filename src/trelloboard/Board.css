@@ -12,7 +12,8 @@
 }
 
 .react-kanban-board {
-    color: white;
+    color: black;
+
 }
 
 .react-kanban-board > :nth-child(1) {
@@ -21,6 +22,11 @@
 
 .react-kanban-board > :nth-child(1) > div {
     width: 24%;
+}
+
+.board-container {
+    border: 1px solid black; /* Add a small black border */
+    border-radius: 4px; /* Optional: Add border radius for rounded corners */
 }
 
 .react-kanban-column {
@@ -36,7 +42,7 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    background: var(--transparent-black);
+    background: black;
     padding: 1rem;
     gap: 1.5rem;
     margin-top: 1.2rem;
@@ -87,7 +93,7 @@
 .grid-c1-content .lg-value {
     margin-top: 8px;
     margin-bottom: 16px;
-    color: #c7c4c6;
+    color: black;
 }
 
 .grid-c1-content .expiry-text {
@@ -104,7 +110,7 @@
 }
 
 .grid-c1-content span {
-    color: #8a8587;
+    color: black;
 }
 
 .grid-c1 .card-logo-wrapper {

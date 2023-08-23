@@ -8,6 +8,7 @@ import ipAddress from "../ipAddress.jsx";
 import jsPDF from "jspdf";
 import 'jspdf-autotable';
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis} from "recharts";
+import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
 const data1 = [
     { name: "January", Total: 800 },
@@ -22,16 +23,39 @@ const data1 = [
 const Earnings = () => {
     const [earning, setEarning] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
+    const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const userData = JSON.parse(user_data)
 
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify({ user_id: "63c3cc724a4ed3fd4bc79cfb" })
+        body: JSON.stringify({ user_id: userData.id })
     }
 
+    const edit_record = async () => {
+        try {
+            const response = await fetch(ipAddress + '/UpdateEarning', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    earning_Id: earning._id,
+                    amount: amount, // update the amount with the new value
+                }),
+            }).then(() => {
+            });
+            if (response.ok) {
+                console.log('Earning record updated successfully!');
+            } else {
+                console.log('Error updating earning record');
+            }
 
+        } catch (error) {
+            console.log("error in editing earning record");
+            console.log(error);
+        }
+    };
 
     const generatePDF = () => {
         const doc = new jsPDF();
@@ -93,81 +117,103 @@ const Earnings = () => {
         }
     };
 
+    const handleKebabClick = (itemId) => {
+        if (selectedRow === itemId) {
+            setSelectedRow(null); // Close the dropdown if already open
+        } else {
+            setSelectedRow(itemId); // Open the dropdown
+        }
+    };
+
     return (
-        <div className="main-content">
+        <>
+            <Sidebar/>
+            <div className="main-content">
+
             <ContentTop />
-            <div className="grid-two-item grid-common grid-c4">
+            <div className="grid-two-item grid-common  grid-c4">
                 <div className="grid-c-title">
-                    <h3 className="grid-c-title-text">My Earnings</h3>
-                    <button className=" orange-button grid-c-title-icon" onClick={() => window.location.href = '/addEarning'}>
-                        <img src={iconsImgs.plus} alt="Plus Icon" />
-                    </button>
-                    <button className="grid-c-title-text" onClick={generatePDF}>
-                        Export as PDF
+                    <h1 className="sm:text-4xl text-center font-medium title-font mb-2 text-gray-900">My Earnings</h1>
+                    <button className="grid-c-title-text export-button" onClick={generatePDF}>
+                        Export
                     </button>
                 </div>
-                <div>
-                    <div className="grid-items">
+                <div className="lg:w-3/3 w-full mx-auto overflow-auto">
+                    <table className="table-auto w-full text-left whitespace-no-wrap">
                         {/* Column headings */}
-                        <div className="grid-item heading">
-                            <div className="grid-item-l">
-                                <div className="icon"></div>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-black ">Amount</span>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-black">Description</span>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-black">Payment Method</span>
-                            </div>
-                            <div className="grid-item-r">
-                                <span className="text-silver-v1">Date</span>
-                            </div>
-                        </div>
+                        <thead>
+                        <tr>
+                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Amount</th>
+                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Description</th>
+                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Payment Method</th>
+                            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Date</th>
+                            <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
+                        </tr>
+                        </thead>
                         {/* Data rows */}
+                        <tbody>
                         {earning.map((budgetItem) => (
-                            <div className="grid-item" key={budgetItem._id}>
-                                <div className="grid-item-l">
-                                    <div className="icon">
-                                        <input
-                                            type="checkbox"
-                                            checked={selectedRow === budgetItem._id}
-                                            onChange={() => handleCheckboxChange(budgetItem._id)}
-                                        />
-                                    </div>
-                                </div>
-                                <div className="grid-item-r">
-                                    <span className="text-silver-v1">$ {budgetItem.Amount}</span>
-                                </div>
-                                <div className="grid-item-r">
-                                    <span className="text-silver-v1 wide-column">{budgetItem.description}</span>
-                                </div>
-                                <div className="grid-item-r">
-                                    <span className="text-silver-v1">{budgetItem.payment_method}</span>
-                                </div>
-                                <div className="grid-item-r">
-                                    <span className="text-silver-v1">{budgetItem.date}</span>
-                                </div>
-                            </div>
+
+                            <tr key={budgetItem._id}>
+                                <td className="px-4 py-3 text-gray-900">{budgetItem.Amount}</td>
+                                <td className="px-4 py-3 text-gray-900">{budgetItem.description}</td>
+                                <td className="px-4 py-3 text-gray-900">{budgetItem.payment_method}</td>
+                                <td className="px-4 py-3 text-lg text-gray-900">{budgetItem.date}</td>
+                                <td className="px-4 py-3">
+                                    <button className="w-6 h-6 rounded-lg mr-2 p-1 bg-gray-300 hover:bg-gray-400
+                        flex items-center justify-center"
+                                            onClick={() => handleKebabClick(budgetItem._id)}
+                                    >
+                                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                             xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round"
+                                                                                      strokeWidth={2} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>
+                                    </button>
+                                    {selectedRow === budgetItem._id && (
+                                        <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 shadow-lg">
+                                            <button
+                                                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                                                onClick={() => edit_record(selectedRow)}
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
+                                                onClick={() => delete_record(selectedRow)}
+                                            >
+                                                Delete
+                                            </button>
+                                        </div>
+                                    )}
+                                </td>
+                            </tr>
+
                         ))}
-                    </div>
-                    <div className="grid-item-r">
-                        <div className="button-container">
-                        <button className="edit-button" onClick={() => handleEdit(selectedRow)}
-                                disabled={!selectedRow}
+                        </tbody>
+                    </table>
+                    {/*<div className="grid-item-r">*/}
+                    {/*    <div className="button-container">*/}
+                    {/*    <button className="edit-button" onClick={() => handleEdit(selectedRow)}*/}
+                    {/*            disabled={!selectedRow}*/}
+                    {/*    >*/}
+                    {/*        Edit*/}
+                    {/*    </button>*/}
+                    {/*    <button className="delete-button" onClick={() => delete_record(selectedRow)}*/}
+                    {/*            disabled={!selectedRow}*/}
+                    {/*    >*/}
+                    {/*        Delete*/}
+                    {/*    </button>*/}
+                    {/*        </div>*/}
+                    {/*</div>*/}
+
+                    <div className="mt-4">
+                        <button
+                            className="edit-button flex mx-auto text-white border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
+                            onClick={() => window.location.href = '/addEarning'}
                         >
-                            Edit
+                            Add Earning
                         </button>
-                        <button className="delete-button" onClick={() => delete_record(selectedRow)}
-                                disabled={!selectedRow}
-                        >
-                            Delete
-                        </button>
-                            </div>
                     </div>
-                </div>
+            </div>
             </div>
 
 
@@ -200,6 +246,7 @@ const Earnings = () => {
                 </ResponsiveContainer>
             </div>
         </div>
+            </>
     );
 };
 

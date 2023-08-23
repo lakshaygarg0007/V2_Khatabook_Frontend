@@ -1,14 +1,17 @@
-import { iconsImgs } from "../../utils/images"
+import {iconsImgs} from "../../utils/images"
 import "./Subscriptions.css";
-import {useEffect, useState} from "react";
+import {useEffect, useState, React} from "react";
 import ipAddress from "../../ipAddress.jsx";
+import Sidebar from "../../layout/Sidebar/Sidebar.jsx";
 
 const Subscriptions = () => {
 
     const [subscriptions, setSubscription] = useState([]);
+    const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const userData = JSON.parse(user_data)
 
     const request1 = {
-        "user_id": "63c3cc724a4ed3fd4bc79cfb"
+        "user_id": userData.id
     };
 
     const options1 = {
@@ -33,37 +36,37 @@ const Subscriptions = () => {
         getSubscriptionsList()
     }, []);
 
-  return (
-
-    <div className="subgrid-two-item grid-common grid-c5">
-        <div className="grid-c-title">
-            <h3 className="grid-c-title-text">Subscriptions</h3>
-            <button className="grid-c-title-icon">
-                <img src={ iconsImgs.plus } onClick={() => window.location.href = '/addSubscriptions'} />
-            </button>
-        </div>
-        <div className="grid-c5-content">
-            <div className="grid-items">
-                {
-                    subscriptions.map((subscription) => (
-                        <div className="grid-item" key = {subscription._id}>
-                            <div className="grid-item-l">
-                                <div className="icon">
-                                    <img src={ iconsImgs.alert } />
-                                </div>
-                                <p className="text-black">{ subscription.subscription } <span>
+    return (
+        <div className="subgrid-two-item grid-common grid-c5">
+            <div className="grid-c-title">
+                <h3 className="grid-c-title-text text-black ">Subscriptions</h3>
+                <button className="grid-c-title-icon">
+                    <img src={iconsImgs.plus} onClick={() => window.location.href = '/addSubscriptions'}/>
+                </button>
+            </div>
+            <div className="grid-c5-content">
+                <div className="grid-items">
+                    {
+                        subscriptions.map((subscription) => (
+                            <div className="grid-item" key={subscription._id}>
+                                <div className="grid-item-l">
+                                    <div className="icon">
+                                        <img src={iconsImgs.alert}/>
+                                    </div>
+                                    <p className="text-black">{subscription.subscription} <span>
                                         </span></p>
+                                </div>
+                                <div>
+                                        <span
+                                            className="text text-black">Till {new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
+                                </div>
                             </div>
-                            <div >
-                                <span className="text text-black">Till { new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
-                            </div>
-                        </div>
-                    ))
-                }
+                        ))
+                    }
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default Subscriptions

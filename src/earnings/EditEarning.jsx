@@ -63,20 +63,6 @@ const AddEarning = (callback, deps) => {
         window.location.reload();
     });
 
-    const handleCheckboxChange = (itemId) => {
-        if (selectedRow === itemId) {
-            setSelectedRow(null); // Deselect the row
-        } else {
-            setSelectedRow(itemId); // Select the row
-        }
-    };
-
-    const handleNewEarningChange = (field, value) => {
-        setNewEarning((prevEarning) => ({
-            ...prevEarning,
-            [field]: value
-        }));
-    };
 
     return (
         <div className="main-content">
@@ -147,7 +133,7 @@ const AddEarning = (callback, deps) => {
             </div>
         </div>
 
-);
+    );
 };
 
 export default AddEarning;

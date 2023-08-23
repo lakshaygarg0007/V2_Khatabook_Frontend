@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import ContentTop from "../components/ContentTop/ContentTop.jsx";
 import {iconsImgs} from "../utils/images.js";
+import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
 const StockPrices1 = () => {
     const [stockData, setStockData] = useState([]);
@@ -46,28 +47,29 @@ const StockPrices1 = () => {
     return (
         <div className="grid-two-item grid-common grid-c4">
             <div className="grid-c-title">
-                <h3 className="grid-c-title-text">Stocks</h3>
+                <h3 className="grid-c-title-text text-black">Stocks</h3>
                 <button className="grid-c-title-icon">
-                    <img src={ iconsImgs.plus } onClick={() => window.location.href = '/addSubscriptions'} />
+                    <img src={iconsImgs.plus} onClick={() => window.location.href = '/addSubscriptions'}/>
                 </button>
             </div>
             <div className="grid-c4-content">
                 <div className="grid-items">
-                {Object.keys(stockSymbolToName).map(symbol => (
-                    <div>
-                        <div className="grid-c1-content">
-                            <div key={symbol}>
-                                <h3>{stockSymbolToName[symbol]}</h3>
-                                {stockData[symbol] && stockData[symbol].c !== undefined ? (
-                                    <p>Current Price: <span className="red-price"> ${stockData[symbol].c}</span></p>
-                                ) : (
-                                    <p>Loading...</p>
-                                )}
+                    {Object.keys(stockSymbolToName).map(symbol => (
+                        <div>
+                            <div className="grid-c1-content">
+                                <div key={symbol}>
+                                    <h3>{stockSymbolToName[symbol]}</h3>
+                                    {stockData[symbol] && stockData[symbol].c !== undefined ? (
+                                        <p>Current Price: <span className="red-price"> ${stockData[symbol].c}</span>
+                                        </p>
+                                    ) : (
+                                        <p>Loading...</p>
+                                    )}
+                                </div>
                             </div>
+                            <br/>
                         </div>
-                        <br/>
-                    </div>
-                ))}
+                    ))}
                 </div>
             </div>
         </div>
