@@ -10,6 +10,7 @@ import 'jspdf-autotable';
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis} from "recharts";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 import {useNavigate} from "react-router-dom";
+import _ from 'lodash';
 import EditEarning from "./EditEarning.jsx";
 
 const data1 = [
@@ -28,6 +29,15 @@ const Earnings = () => {
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
     const navigate = useNavigate()
+    const [paginatedPosts, setPaginatedPosts] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const page_size = 5;
+
+    const [index, setIndex] = useState(null);
+
+    const getIndex = (i) => {
+        setIndex(i)
+    }
 
     const options = {
         method: "POST",
@@ -36,29 +46,6 @@ const Earnings = () => {
         },
         body: JSON.stringify({ user_id: userData.id })
     }
-
-    const edit_record1 = async () => {
-        try {
-            const response = await fetch(ipAddress + '/UpdateEarning', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                body: JSON.stringify({
-                    earning_Id: earning._id,
-                    amount: amount, // update the amount with the new value
-                }),
-            }).then(() => {
-            });
-            if (response.ok) {
-                console.log('Earning record updated successfully!');
-            } else {
-                console.log('Error updating earning record');
-            }
-
-        } catch (error) {
-            console.log("error in editing earning record");
-            console.log(error);
-        }
-    };
 
     const edit_record = async (earning) => {
         navigate('/editEarning', { state: { earning } });
@@ -109,20 +96,26 @@ const Earnings = () => {
                     date: new Date(item.date).toLocaleDateString(),
                     description: item.description,
                 }));
+                setPaginatedPosts(_(transformedData).slice(0).take(page_size).value());
                 setEarning(transformedData);
             })
             .catch((error) => {
                 console.error('Error fetching data:', error);
             });
+
+
     }, []);
 
-    const handleCheckboxChange = (itemId) => {
-        if (selectedRow === itemId) {
-            setSelectedRow(null); // Deselect the row
-        } else {
-            setSelectedRow(itemId); // Select the row
-        }
-    };
+    const page_count = earning ? Math.ceil(earning.length / page_size) : 0;
+    const pages = _.range(1, page_count + 1)
+
+
+    const pagination = (page_no) => {
+        setCurrentPage(page_no)
+        const start_index = (page_no - 1) * page_size;
+        const paginatedPosts = _(earning).slice(start_index).take(page_size).value()
+        setPaginatedPosts(paginatedPosts)
+    }
 
     const handleKebabClick = (itemId) => {
         if (selectedRow === itemId) {
@@ -159,9 +152,8 @@ const Earnings = () => {
                         </thead>
                         {/* Data rows */}
                         <tbody>
-                        {earning.map((budgetItem) => (
-
-                            <tr key={budgetItem._id}>
+                        {paginatedPosts.map((budgetItem) => (
+                            <tr key={getIndex}>
                                 <td className="px-4 py-3 text-gray-900">{budgetItem.Amount}</td>
                                 <td className="px-4 py-3 text-gray-900">{budgetItem.description}</td>
                                 <td className="px-4 py-3 text-gray-900">{budgetItem.payment_method}</td>
@@ -197,20 +189,27 @@ const Earnings = () => {
                         ))}
                         </tbody>
                     </table>
-                    {/*<div className="grid-item-r">*/}
-                    {/*    <div className="button-container">*/}
-                    {/*    <button className="edit-button" onClick={() => handleEdit(selectedRow)}*/}
-                    {/*            disabled={!selectedRow}*/}
-                    {/*    >*/}
-                    {/*        Edit*/}
-                    {/*    </button>*/}
-                    {/*    <button className="delete-button" onClick={() => delete_record(selectedRow)}*/}
-                    {/*            disabled={!selectedRow}*/}
-                    {/*    >*/}
-                    {/*        Delete*/}
-                    {/*    </button>*/}
-                    {/*        </div>*/}
-                    {/*</div>*/}
+
+                    <br></br>
+
+                    <div class="flex justify-center">
+                        <nav>
+                            <ul className="flex list-style-none">
+                                {
+                                    pages.map((page) => (
+                                        <li className={page === currentPage ? "page-item active" : "page-item"} onClick={() => pagination(page)} >
+                                            {<a
+                                                className={page === currentPage ? "page-link relative block py-1.5 px-3 rounded border-0 bg-red-400 outline-none transition-all duration-300 rounded text-white hover:text-white hover:bg-red-600 shadow-md focus:shadow-md" :
+                                                    "page-link relative block py-1.5 px-3 rounded border-0 bg-transparent outline-none transition-all duration-300 rounded text-gray-800 hover:text-gray-800 hover:bg-gray-200 focus:shadow-none"}
+                                            >
+                                                {page}
+                                            </a>}
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </nav>
+                    </div>
 
                     <div className="mt-4">
                         <button
