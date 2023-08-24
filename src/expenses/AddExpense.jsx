@@ -66,7 +66,7 @@ const AddExpense = () => {
                         <div>
                             <label htmlFor="amount" className="block text-gray-700 mb-2">Amount</label>
                             <input
-                                type="text"
+                                type="number"
                                 id="amount"
                                 className="w-full bg-gray-100 border text-black placeholder-black border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
                                 placeholder="Amount"
