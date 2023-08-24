@@ -4,12 +4,7 @@
   flex-direction: column;
 }
 .grid-c1-content {
-  background: linear-gradient(
-          114.07deg,
-          rgba(66, 59, 55, 0.6) 3.49%,
-          rgba(66, 59, 55, 0) 34.7%
-  ),
-  linear-gradient(138.58deg, rgba(59, 43, 30, 0.37) 43.56%, #fea767 112.68%);
+  background: white;
   flex: 1;
   border-radius: 10px;
   padding: 16px;

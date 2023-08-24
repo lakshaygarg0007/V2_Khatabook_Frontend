@@ -79,15 +79,10 @@
 }
 
 .grid-c1-content {
-    background: linear-gradient(
-            114.07deg,
-            rgba(66, 59, 55, 0.6) 3.49%,
-            rgba(66, 59, 55, 0) 34.7%
-    ),
-    linear-gradient(138.58deg, rgba(59, 43, 30, 0.37) 43.56%, #fea767 112.68%);
-    flex: 1;
+    background: white;
     border-radius: 10px;
     padding: 16px;
+    color: black;
 }
 
 .grid-c1-content .lg-value {
@@ -146,3 +141,59 @@
         grid-column-end: 3;
     }
 }
+
+.stock-board {
+    background: white;
+    border-radius: 10px;
+    padding: 16px;
+    color: black;
+    font-size: 20px;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1);
+    font-family: Gill Sans;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stock-board:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    background-color: #f0f0f0; /* Change the background color when hovering */
+}
+
+.stock-board .lg-value {
+    margin-top: 8px;
+    margin-bottom: 16px;
+    color: black;
+}
+
+.stock-board .expiry-text {
+    margin-bottom: 6px;
+}
+
+.stock-board .card-wrapper {
+    display: flex;
+}
+
+.stock-board .card-pin-hidden {
+    font-size: 32px;
+    margin-right: 8px;
+}
+
+.stock-board span {
+    color: black;
+}
+
+.red-price {
+    color: red; /* Change the color to your desired color */
+    /* Other styles for .red-price */
+}
+
+.stock-name {
+    color: blue; /* Change the color to your desired color */
+    margin-right: 10px; /* Add a gap between name and price */
+    /* Other styles for .stock-name */
+}
+
+.price {
+    /* Styles for .price */
+}
+

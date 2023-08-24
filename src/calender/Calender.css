@@ -15,6 +15,12 @@ td{
     border : 1px solid black !important
 }
 
+.calendar-card-font{
+    font-family: AppleMyungjo;
+    font-size: 17px;
+    color: #ffbcf9
+}
+
 /* Calender.css */
 
 /* Style the header buttons for changing views */

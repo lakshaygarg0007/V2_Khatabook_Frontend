@@ -9,6 +9,8 @@ import jsPDF from "jspdf";
 import 'jspdf-autotable';
 import {Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis} from "recharts";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
+import {useNavigate} from "react-router-dom";
+import EditEarning from "./EditEarning.jsx";
 
 const data1 = [
     { name: "January", Total: 800 },
@@ -25,6 +27,7 @@ const Earnings = () => {
     const [selectedRow, setSelectedRow] = useState(null);
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
+    const navigate = useNavigate()
 
     const options = {
         method: "POST",
@@ -34,7 +37,7 @@ const Earnings = () => {
         body: JSON.stringify({ user_id: userData.id })
     }
 
-    const edit_record = async () => {
+    const edit_record1 = async () => {
         try {
             const response = await fetch(ipAddress + '/UpdateEarning', {
                 method: 'POST',
@@ -56,6 +59,10 @@ const Earnings = () => {
             console.log(error);
         }
     };
+
+    const edit_record = async (earning) => {
+        navigate('/editEarning', { state: { earning } });
+    }
 
     const generatePDF = () => {
         const doc = new jsPDF();
@@ -172,7 +179,7 @@ const Earnings = () => {
                                         <div className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 shadow-lg">
                                             <button
                                                 className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                                                onClick={() => edit_record(selectedRow)}
+                                                onClick={() => edit_record(budgetItem)}
                                             >
                                                 Edit
                                             </button>

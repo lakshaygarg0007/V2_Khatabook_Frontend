@@ -27,6 +27,11 @@ const BoardPage = () => {
         body: JSON.stringify({user_id: userData.id})
     }
 
+    const getTaskCountForStatus = (status) => {
+        const column = board.columns.find((col) => col.status === status);
+        return column ? column.cards.length : 0;
+    };
+
     const changeCardStatus = (id, status) => {
         const apiUrl = ipAddress + '/changeCardStatus';
         const options1 = {
@@ -150,7 +155,7 @@ const BoardPage = () => {
                             renderColumnHeader={(props) => (
                                 <div className='column-header'>
 
-                                    <span>{props.status}</span>
+                                    <span>{props.status} ({getTaskCountForStatus(props.status)}) </span>
                                     <IoMdAdd
                                         color="black"
                                         size={25} title="Add card"

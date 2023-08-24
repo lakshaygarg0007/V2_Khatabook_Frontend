@@ -3,7 +3,7 @@ import ContentTop from "../components/ContentTop/ContentTop.jsx";
 import {iconsImgs} from "../utils/images.js";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
-const StockPrices1 = () => {
+const StockCard = () => {
     const [stockData, setStockData] = useState([]);
     const basePath = "https://finnhub.io/api/v1";
     const stockSymbolToName = {
@@ -48,25 +48,25 @@ const StockPrices1 = () => {
         <div className="grid-two-item grid-common grid-c4">
             <div className="grid-c-title">
                 <h3 className="grid-c-title-text text-black">Stocks</h3>
-                <button className="grid-c-title-icon">
-                    <img src={iconsImgs.plus} onClick={() => window.location.href = '/addSubscriptions'}/>
-                </button>
             </div>
             <div className="grid-c4-content">
                 <div className="grid-items">
                     {Object.keys(stockSymbolToName).map(symbol => (
                         <div>
-                            <div className="grid-c1-content">
+                            <div className="stock-board">
                                 <div key={symbol}>
-                                    <h3>{stockSymbolToName[symbol]}</h3>
                                     {stockData[symbol] && stockData[symbol].c !== undefined ? (
-                                        <p>Current Price: <span className="red-price"> ${stockData[symbol].c}</span>
-                                        </p>
+                                        <div>
+                                            <span className="stock-name">{stockSymbolToName[symbol]}</span>
+                                            <span className="price">${stockData[symbol].c}</span>
+                                        </div>
+
                                     ) : (
                                         <p>Loading...</p>
                                     )}
                                 </div>
                             </div>
+
                             <br/>
                         </div>
                     ))}
@@ -76,4 +76,4 @@ const StockPrices1 = () => {
     );
 };
 
-export default StockPrices1;
+export default StockCard;

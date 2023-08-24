@@ -4,12 +4,7 @@
   flex-direction: column;
 }
 .grid-c1-content {
-  background: linear-gradient(
-      114.07deg,
-      rgba(66, 59, 55, 0.6) 3.49%,
-      rgba(66, 59, 55, 0) 34.7%
-    ),
-    linear-gradient(138.58deg, rgba(59, 43, 30, 0.37) 43.56%, #fea767 112.68%);
+  background: white;
   flex: 1;
   border-radius: 10px;
   padding: 16px;
@@ -60,4 +55,109 @@
     grid-column-start: 1;
     grid-column-end: 3;
   }
+}
+
+.earning-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  background-color: #ffffff;
+  color: green;
+  flex: 1;
+  font-size: 24px;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.earning-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.earning-card h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.earning-card p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.earning-card .button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.earning-card .edit-button,
+.earning-card .delete-button {
+  background-color: #3490dc;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.earning-card .edit-button:hover,
+.earning-card .delete-button:hover {
+  background-color: #2779bd;
+}
+
+
+.expense-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  background-color: #ffffff;
+  color: red;
+  flex: 1;
+  font-size: 24px;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.expense-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.expense-card h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.expense-card p {
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+.expense-card .button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.expense-card .edit-button,
+.expense-card .delete-button {
+  background-color: #3490dc;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.expense-card .edit-button:hover,
+.expense-card .delete-button:hover {
+  background-color: #2779bd;
 }

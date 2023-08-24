@@ -42,53 +42,51 @@ const Subscriptions = () => {
                 <ContentTop/>
                 <div className="grid-two-item grid-common grid-c5">
                     <div className="grid-c-title">
-                        <h3 className="grid-c-title-text">Subscriptions</h3>
+                        <h3 className="grid-c-title-text text-black">Subscriptions</h3>
                         <button className="grid-c-title-icon">
-                            <img src={iconsImgs.plus} alt="Add"
-                                 onClick={() => window.location.href = '/addSubscriptions'}/>
                         </button>
                     </div>
-                    <div className="grid-c5-content">
-                        <div className="grid-items">
-                            <div className="grid-item heading">
-                                <div className="grid-item-l text-black">
-                                    <span>Subscription Name</span>
-                                </div>
-                                <div className="text-black">
-                                    <span>Price</span>
-                                </div>
-                                <div className="text-black">
-                                    <span>Start Date</span>
-                                </div>
-                                <div className="text-black">
-                                    <span>Valid Till</span>
-                                </div>
-                            </div>
-                            {subscriptions.map((subscription) => (
-                                <div className="grid-item" key={subscription._id}>
-                                    <div className="grid-item-l">
-                                        <div className="icon">
-                                            <img src={iconsImgs.alert} alt="Alert"
-                                                 onClick={() => window.location.href = '/addSubscriptions'}/>
-                                        </div>
-                                        <p className=" text-black">{subscription.subscription}</p>
-                                    </div>
-                                    <div>
-                                        <span className="text text-black">{subscription.amount}</span>
-                                    </div>
-                                    <div>
-                                        <span
-                                            className="text text-black">{new Date(subscription.start_date).toLocaleDateString("en-GB")}</span>
-                                    </div>
-                                    <div>
-                                        <span
-                                            className="text text-black">{new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</span>
-                                    </div>
-                                </div>
-                            ))}
+                    <div className="lg:w-3/3 w-full mx-auto overflow-auto">
+                            <table className="table-auto w-full text-left whitespace-no-wrap">
+                                <thead>
+                                <tr>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">Subscription
+                                        Name
+                                    </th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Price</th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Payment
+                                        Start Date
+                                    </th>
+                                    <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">Valid
+                                        Till
+                                    </th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                {subscriptions.map((subscription) => (
+                                    <tr key={subscription._id}>
+                                        <td className="px-4 py-3 text-gray-900">
+                                                {subscription.subscription}
+                                        </td>
+                                        <td className="px-4 py-3 text-gray-900">{subscription.amount}</td>
+                                        <td className="px-4 py-3 text-lg text-gray-900">{new Date(subscription.start_date).toLocaleDateString("en-GB")}</td>
+                                        <td className="px-4 py-3 text-lg text-gray-900">{new Date(subscription.expiry_date).toLocaleDateString("en-GB")}</td>
+                                    </tr>
+                                ))}
+                                </tbody>
+                            </table>
                         </div>
+                    <div className="mt-4">
+                        <button
+                            className="edit-button flex mx-auto text-white border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
+                            onClick={() => window.location.href = '/addSubscriptions'}
+                        >
+                            Add Subscription
+                        </button>
                     </div>
                 </div>
+
             </div>
         </>
     );

@@ -21,6 +21,7 @@ import Goto from "./GoTo";
 import Signup from "./signup/Signup";
 import EditEarning from "./earnings/EditEarning";
 import {useState} from "react";
+import EditExpense from "./expenses/EditExpense";
 
 function App() {
     const isLoginRoute = window.location.pathname === "/login";
@@ -50,6 +51,7 @@ function App() {
                     <Route path="/logout" element={<Logout />} />
                     <Route path="/signup" element={<Signup />} />
                     <Route path="/editEarning" element={<EditEarning />} />
+                    <Route path="/editExpense" element={<EditExpense />} />
                 </Routes>
                 <Routes>
                     <Route path="/" element={<Goto />} />

@@ -9,36 +9,46 @@ import Loans from "../Loans/Loans";
 import Financial from "../Financial/Financial";
 import PieChartBox from "../../piechart/PieChart";
 import StockPrices from "../../stocks/Stocks";
-import StockPrices1 from "../../stocks/Stocks1.jsx";
-import Calender1 from "../../calender/Calender1.jsx";
+import StockCard from "../../stocks/Stocks1.jsx";
+import CalenderCard from "../../calender/CalenderCard.jsx";
 
 const ContentMain = () => {
-  return (
-    <div className="main-content-holder">
-        <div className="content-grid-one">
-            <EarningCard />
-            <Transactions />
-            <PieChartBox />
-        </div>
-        <div className="content-grid-two">
-            <div className="grid-two-item">
-            <Calender1 />
+    return (
+        <div className="main-content-holder">
+            <div className="content-grid-one">
+                <div className="grid-one-item">
+                <EarningCard/>
+                </div>
+                <div className="grid-one-item">
+                <Transactions/>
+                </div>
+                <div className="grid-one-item">
+                <EarningCard/>
+                </div>
+                <div className="grid-one-item">
+                    <Transactions/>
+                </div>
             </div>
-            <div className="grid-two-item">
-              <div className="subgrid-two">
-                <Subscriptions />
-                <Savings />
-              </div>
-            </div>
+            <div className="content-grid-two">
+                <div className="grid-two-item">
+                    <StockCard/>
+                </div>
+                <PieChartBox/>
+                <div className="grid-two-item">
+                    <div className="subgrid-two">
+                        <Subscriptions/>
+                        <Savings/>
+                    </div>
+                </div>
 
-            <div className="grid-two-item">
-              <div className="subgrid-two">
-                <StockPrices1 />
-              </div>
+                <div className="grid-two-item">
+                    <div className="subgrid-two">
+                        <CalenderCard/>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
 
 export default ContentMain

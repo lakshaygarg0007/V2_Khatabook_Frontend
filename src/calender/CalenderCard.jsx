@@ -10,7 +10,7 @@ import ipAddress from "../ipAddress.jsx";
 import {useState} from "react";
 import {iconsImgs} from "../utils/images.js";
 
-const Calender1 = () => {
+const CalenderCard = () => {
     const [calendarData, setCalendarData] = useState(null);
 
     const options = {
@@ -44,9 +44,9 @@ const Calender1 = () => {
     return (
         <div className="grid-two-item grid-common grid-c5">
             <div className="grid-c-title">
-                <h3 className="grid-c-title-text text-black">Calendar</h3>
+                <h3 className="grid-c-title-text text-black">Upcoming Meetings</h3>
                 <button className="grid-c-title-icon">
-                    <img src={ iconsImgs.plus } />
+                    <img src={ iconsImgs.plus } onClick={() => window.location.href = '/calendar'} />
                 </button>
             </div>
             <div className="grid-c5-content">
@@ -54,10 +54,10 @@ const Calender1 = () => {
                         {calendarData && calendarData.map((budgetItem) => (
                             <div className="grid-item" key={budgetItem._id}>
                                 <div className="grid-item-r">
-                                    <span className="text-black">{budgetItem.title}</span>
+                                    <span className="calendar-card-font">{budgetItem.title}</span>
                                 </div>
                                 <div className="grid-item-r">
-                                    <span className="text-black wide-column">at {new Date(budgetItem.end_date).toLocaleTimeString("en-GB")}</span>
+                                    <span className="text-scarlet wide-column">at {new Date(budgetItem.end_date).toLocaleTimeString("en-GB")}</span>
                                 </div>
                             </div>
                         ))}
@@ -67,4 +67,4 @@ const Calender1 = () => {
     );
 };
 
-export default Calender1;
+export default CalenderCard;

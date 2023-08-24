@@ -16,6 +16,7 @@ import {
     ResponsiveContainer,
 } from "recharts";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
+import {useNavigate} from "react-router-dom";
 
 const data1 = [
     {name: "January", Total: 800},
@@ -28,6 +29,7 @@ const data1 = [
 
 
 const Earnings = ({aspect, title}) => {
+    const navigate = useNavigate();
     const [earning, setEarning] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
     const [user_data] = useState(sessionStorage.getItem("user_data"))
@@ -39,6 +41,10 @@ const Earnings = ({aspect, title}) => {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({user_id: userData.id})
+    }
+
+    const edit_record = async (expense) => {
+        navigate('/editExpense', { state: { expense } });
     }
 
     const generatePDF = () => {
@@ -152,7 +158,6 @@ const Earnings = ({aspect, title}) => {
                                 <th className="w-10 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tr rounded-br"></th>
                             </tr>
                             </thead>
-
                             <tbody>
                             {earning.map((budgetItem) => (
                                 <tr key={budgetItem._id}>
@@ -177,7 +182,7 @@ const Earnings = ({aspect, title}) => {
                                                 className="absolute right-0 mt-2 w-40 bg-white border border-gray-300 shadow-lg">
                                                 <button
                                                     className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                                                    onClick={() => edit_record(selectedRow)}
+                                                    onClick={() => edit_record(budgetItem)}
                                                 >
                                                     Edit
                                                 </button>

@@ -24,37 +24,33 @@ const EarningCard = () => {
   };
 
   useEffect(() => {
+      setEarnings(userData.earning)
         // Fetch earnings data from the API
-        const baseUrl = ipAddress;
-        async function fetchEarnings() {
-            try {
-                const totalEarningsResponse = await fetch(baseUrl + '/getTotalEarning', options);
-                const totalEarningsData = await totalEarningsResponse.json();
-                const totalEarnings = totalEarningsData[0].total_earning;
-                setEarnings(totalEarnings);
-            } catch (error) {
-                console.error("Error fetching earnings:", error);
-            }
-        }
-        console.log("abc" + earnings)
-        fetchEarnings();
+        // const baseUrl = ipAddress;
+        // async function fetchEarnings() {
+        //     try {
+        //         const totalEarningsResponse = await fetch(baseUrl + '/getTotalEarning', options);
+        //         const totalEarningsData = await totalEarningsResponse.json();
+        //         const totalEarnings = totalEarningsData[0].total_earning;
+        //         setEarnings(totalEarnings);
+        //     } catch (error) {
+        //         console.error("Error fetching earnings:", error);
+        //     }
+        // }
+        // console.log("abc" + earnings)
+        // fetchEarnings();
   }, []);
 
   return (
     <div className="grid-one-item grid-common grid-c1">
         <div className="grid-c-title">
-            <h3 className="grid-c-title-text text-black">Earning</h3>
+            <h3 className="grid-c-title-text text-black">Total Earning</h3>
             <button className="grid-c-title-icon">
                 <img src={ iconsImgs.plus } onClick={() => window.location.href = '/addEarning'}/>
             </button>
         </div>
-        <div className="grid-c1-content">
-            <p className="text-black">Earnings</p>
-            <div className="card-logo-wrapper">
-                <div className="card-wrapper">
+        <div className="earning-card">
                     <span className="card-pin-hidden">{formatNumberWithCommas(earnings)}</span>
-                </div>
-            </div>
         </div>
     </div>
   )

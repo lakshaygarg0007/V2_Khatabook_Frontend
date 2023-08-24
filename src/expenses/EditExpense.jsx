@@ -1,5 +1,4 @@
 import React, {useCallback, useEffect, useState} from "react";
-import "./Earnings.jsx";
 import {iconsImgs} from "../utils/images";
 import ContentTop from "../components/ContentTop/ContentTop.jsx";
 import ipAddress from "../ipAddress.jsx";
@@ -10,7 +9,6 @@ import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
 const AddEarning = (props) => {
     const navigate = useNavigate();
-    const [earning, setEarning] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
     const [amount, set_amount] = useState(null);
     const [description, set_description] = useState(null);
@@ -20,13 +18,13 @@ const AddEarning = (props) => {
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
     const location = useLocation();
-    const earningData = location.state.earning;
+    const expenseData = location.state.expense;
 
     useEffect(() => {
-        set_amount(earningData.Amount);
-        set_description(earningData.description)
-        set_date(earningData.date)
-        set_payment_method(earningData.payment_method)
+        set_amount(expenseData.Amount)
+        set_description(expenseData.description)
+        set_payment_method(expenseData.payment_method)
+        set_date(expenseData.date)
         const options = {
             method: "GET",
             headers: {
@@ -46,7 +44,7 @@ const AddEarning = (props) => {
     const edit_record = useCallback(() => {
 
         const data = {
-            "earning_id": earningData._id,
+            "expense_id": expenseData._id,
             "amount": amount,
         };
 
@@ -58,8 +56,8 @@ const AddEarning = (props) => {
             },
         }
 
-        const res = fetch(ipAddress + '/updateEarning', options);
-        navigate('/earnings');
+        const res = fetch(ipAddress + '/updateExpense', options);
+        navigate('/expenses');
         window.location.reload();
     });
 
@@ -101,7 +99,7 @@ const AddEarning = (props) => {
                                 id="payment_method"
                                 className="w-full text-black placeholder-black border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
                                 value={payment_method}
-                                onChange={(e) => set_payment_methods(e.target.value)}
+                                onChange={(e) => set_payment_method(e.target.value)}
                             >
                                 {payment_methods.map(payment_method => (
                                     <option key={payment_method.payment_methods} value={payment_method.payment_methods}>
@@ -129,7 +127,7 @@ const AddEarning = (props) => {
                             className="edit-button flex mx-auto text-white border-0 py-2 px-8 focus:outline-none hover:bg-red-600 rounded text-lg"
                             onClick={() => edit_record()}
                         >
-                            Edit Earning
+                            Edit Expense
                         </button>
                     </div>
                 </div>
