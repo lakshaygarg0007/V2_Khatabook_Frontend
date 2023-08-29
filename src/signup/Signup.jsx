@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom'
+import bcrypt from 'bcryptjs';
 
 export default function Signup() {
 
@@ -9,7 +10,9 @@ export default function Signup() {
     const [response, set_response] = useState(null);
     const [error, set_error] = useState(null);
 
-    const signup = (() => {
+    const signup = (async () => {
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         const data = {
             "first_name": first_name,
             "email": email,

@@ -8,7 +8,7 @@ import 'jspdf-autotable';
 import {useNavigate} from "react-router-dom";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
-const AddEarning = (callback, deps) => {
+const AddEarning = () => {
     const navigate = useNavigate();
     const [earning, setEarning] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
@@ -19,6 +19,11 @@ const AddEarning = (callback, deps) => {
     const [payment_methods, set_payment_methods] = useState([]);
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
+
+    const handleAmountChange = (event) => {
+        const inputAmount = event.target.value;
+        set_amount(parseFloat(inputAmount)); // Convert to numeric value and update state
+    };
 
     useEffect(() => {
         const options = {
@@ -38,7 +43,6 @@ const AddEarning = (callback, deps) => {
     }, []);
 
     const add_record = useCallback(() => {
-
         if (!amount || !description || !date) {
             alert("Please Fill all details before adding Record");
             return;
@@ -59,7 +63,16 @@ const AddEarning = (callback, deps) => {
             },
         }
 
-        const res = fetch(ipAddress + '/addEarning', options);
+        try {
+            const res = fetch(ipAddress + '/addEarning', options);
+            const new_amount = parseFloat(amount) + parseFloat(userData.earning);
+            sessionStorage.setItem('user_data', JSON.stringify({
+                name: userData.name, id: userData.id,
+                earning: new_amount, expense: userData.expense
+            }));
+        } catch (error) {
+            console.error("An error occurred:", error);
+        }
         navigate('/earnings');
         window.location.reload();
     });
@@ -78,8 +91,8 @@ const AddEarning = (callback, deps) => {
                                 id="amount"
                                 className="w-full text-black placeholder-black border border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
                                 placeholder="Amount"
-                                value={amount}
-                                onChange={(e) => set_amount(e.target.value)}
+                                value={amount !== null ? amount.toString() : ''}
+                                onChange={handleAmountChange}
                             />
                         </div>
 

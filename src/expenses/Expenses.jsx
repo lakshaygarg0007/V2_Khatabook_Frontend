@@ -79,7 +79,7 @@ const Earnings = ({aspect, title}) => {
         doc.save('expense_report.pdf');
     };
 
-    const delete_record = (async (id) => {
+    const delete_record = (async (id, amountDeleted) => {
         const response = await fetch(ipAddress + '/deleteExpense', {
             method: 'POST',
             headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
@@ -88,6 +88,14 @@ const Earnings = ({aspect, title}) => {
             console.log("Record Deleted Successfully")
             window.location.reload();
         });
+        const amt = userData.expense
+        sessionStorage.setItem('user_data', JSON.stringify({
+            name: userData.name, id: userData.id,
+            expense: amt - amountDeleted, earning: userData.earning,
+            subscription_type: userData.subscription_type,
+            email: userData.email,
+            mobile_number: userData.mobile_number
+        }));
     });
 
     const page_count = expense ? Math.ceil(expense.length / page_size) : 0;
@@ -203,7 +211,7 @@ const Earnings = ({aspect, title}) => {
                                                 </button>
                                                 <button
                                                     className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                                                    onClick={() => delete_record(selectedRow)}
+                                                    onClick={() => delete_record(selectedRow, budgetItem.Amount)}
                                                 >
                                                     Delete
                                                 </button>

@@ -4,7 +4,7 @@ import {useEffect, useState, React} from "react";
 import ipAddress from "../../ipAddress.jsx";
 import Sidebar from "../../layout/Sidebar/Sidebar.jsx";
 
-const Subscriptions = () => {
+const SubscriptionCard = () => {
 
     const [subscriptions, setSubscription] = useState([]);
     const [user_data] = useState(sessionStorage.getItem("user_data"))
@@ -47,6 +47,11 @@ const Subscriptions = () => {
             <div className="grid-c5-content">
                 <div className="grid-items">
                     {
+                        subscriptions.length === 0 ? (
+                                    <p className="text-black">
+                                        No subscriptions available. Try adding some! 📅🚀
+                                    </p>
+                                ) :
                         subscriptions.map((subscription) => (
                             <div className="grid-item" key={subscription._id}>
                                 <div className="grid-item-l">
@@ -69,4 +74,4 @@ const Subscriptions = () => {
     )
 }
 
-export default Subscriptions
+export default SubscriptionCard

@@ -7,7 +7,7 @@ import 'jspdf-autotable';
 import {useLocation, useNavigate} from "react-router-dom";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
-const AddEarning = (props) => {
+const EditExpense = (props) => {
     const navigate = useNavigate();
     const [selectedRow, setSelectedRow] = useState(null);
     const [amount, set_amount] = useState(null);
@@ -57,6 +57,14 @@ const AddEarning = (props) => {
         }
 
         const res = fetch(ipAddress + '/updateExpense', options);
+        const new_amount = parseFloat(amount) + parseFloat(userData.expense) - expenseData.Amount;
+        sessionStorage.setItem('user_data', JSON.stringify({
+            name: userData.name, id: userData.id,
+            earning: userData.earning, expense: new_amount,
+            subscription_type: userData.subscription_type,
+            email: userData.email,
+            mobile_number: userData.mobile_number
+        }));
         navigate('/expenses');
         window.location.reload();
     });
@@ -137,4 +145,4 @@ const AddEarning = (props) => {
     );
 };
 
-export default AddEarning;
+export default EditExpense;

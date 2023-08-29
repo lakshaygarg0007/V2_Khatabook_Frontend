@@ -18,6 +18,7 @@ const BoardPage = () => {
     const {board, setBoard} = useBoard()
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
+    const [selectedColumnStatus, setSelectedColumnStatus] = useState(null);
 
     const options = {
         method: "POST",
@@ -26,6 +27,11 @@ const BoardPage = () => {
         },
         body: JSON.stringify({user_id: userData.id})
     }
+
+    const openAddCardModal = (status) => {
+        setSelectedColumnStatus(status);
+        setModalOpened(true);
+    };
 
     const getTaskCountForStatus = (status) => {
         const column = board.columns.find((col) => col.status === status);
@@ -104,6 +110,21 @@ const BoardPage = () => {
         return gradientStyle;
     };
 
+    const deleteBoard = async (id) => {
+        const response = await fetch(ipAddress + '/deleteBoard', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ boardId: id }),
+        });
+
+        if (response.ok) {
+            window.location.reload();
+        }
+    };
+
     const [modalOpened, setModalOpened] = useState(false);
 
     const handleCardAdd = (title, detail) => {
@@ -144,6 +165,7 @@ const BoardPage = () => {
                                                         props
                                                     )
                                                     setBoard(updatedBoard)
+                                                    deleteBoard(props.id)
                                                 }}
                                         >
                                             <RxCross2 color="white" size={15}/>
@@ -159,10 +181,12 @@ const BoardPage = () => {
                                     <IoMdAdd
                                         color="black"
                                         size={25} title="Add card"
-                                        onClick={() => setModalOpened(true)}
+                                        onClick={() => openAddCardModal(props.status)}
                                     />
+
                                     <AddCardModal visible={modalOpened} handleCardAdd={handleCardAdd}
-                                                  onClose={() => setModalOpened(false)}/>
+                                                  onClose={() => setModalOpened(false)} statusData = {selectedColumnStatus}
+                                    />
                                 </div>
                             )}
                         >

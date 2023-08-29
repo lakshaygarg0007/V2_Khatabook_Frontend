@@ -8,7 +8,7 @@ import 'jspdf-autotable';
 import {useLocation, useNavigate} from "react-router-dom";
 import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 
-const AddEarning = (props) => {
+const EditEarning = (props) => {
     const navigate = useNavigate();
     const [earning, setEarning] = useState([]);
     const [selectedRow, setSelectedRow] = useState(null);
@@ -44,7 +44,6 @@ const AddEarning = (props) => {
     }, []);
 
     const edit_record = useCallback(() => {
-
         const data = {
             "earning_id": earningData._id,
             "amount": amount,
@@ -58,7 +57,18 @@ const AddEarning = (props) => {
             },
         }
 
-        const res = fetch(ipAddress + '/updateEarning', options);
+        fetch(ipAddress + '/updateEarning', options).then(() => {
+            console.log(parseFloat(amount) + ' '  + parseFloat(userData.earning) + ' ' +  parseFloat(earningData.Amount))
+        })
+        const new_amount = parseFloat(amount) + parseFloat(userData.earning) - earningData.Amount;
+        sessionStorage.setItem('user_data', JSON.stringify({
+            name: userData.name, id: userData.id,
+            earning: new_amount, expense: userData.expense,
+            subscription_type: userData.subscription_type,
+            email: userData.email,
+            mobile_number: userData.mobile_number
+        }));
+
         navigate('/earnings');
         window.location.reload();
     });
@@ -139,4 +149,4 @@ const AddEarning = (props) => {
     );
 };
 
-export default AddEarning;
+export default EditEarning;

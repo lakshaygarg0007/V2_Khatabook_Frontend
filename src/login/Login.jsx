@@ -35,7 +35,9 @@ export default function Login(props) {
                 sessionStorage.setItem('user_data', JSON.stringify(
                     { name: json_response.name, id: json_response.id,
                     earning: json_response.earning, expense: json_response.expense,
-                        email: json_response.email, subscription_type: json_response.subscription_type}));
+                        email: json_response.email, subscription_type: json_response.subscription_type,
+                        mobile_number: json_response.mobile_number
+                    }));
                 console.log(JSON.parse(sessionStorage.getItem('user_data')))
                 navigate('/', { state: { id: json_response.id, name : json_response.name, earning: json_response.earning,
                         expense: json_response.expense } })

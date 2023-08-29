@@ -9,7 +9,7 @@ import AddEarning from "./earnings/AddEarnings";
 import AddExpense from "./expenses/AddExpense.jsx";
 import Board from "./trelloboard/Board";
 import Calendar from "./calender/Calender";
-import Subscriptions from "./components/Subscriptions/Subscriptions.jsx";
+import SubscriptionCard from "./components/Subscriptions/SubscriptionCard.jsx";
 import SubscriptionsPage from "./subscription/SubscriptionsPage";
 import AddSubscription from "./subscription/AddSubscription.jsx";
 import Profile from "./profile/Profile";
@@ -22,6 +22,7 @@ import Signup from "./signup/Signup";
 import EditEarning from "./earnings/EditEarning";
 import {useState} from "react";
 import EditExpense from "./expenses/EditExpense";
+import AddStock from "./stocks/AddStock";
 
 function App() {
     const isLoginRoute = window.location.pathname === "/login";
@@ -46,6 +47,7 @@ function App() {
                     <Route path="/calendar" element={<Calendar />} />
                     <Route path="/subscriptions" element={<SubscriptionsPage />} />
                     <Route path="/addSubscriptions" element={<AddSubscription />} />
+                    <Route path="/addStock" element={<AddStock />} />
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/stocks" element={<StockPrices />} />
                     <Route path="/logout" element={<Logout />} />

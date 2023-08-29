@@ -73,7 +73,7 @@ const Earnings = () => {
         doc.save('earning_report.pdf');
     };
 
-    const delete_record = (async (id) => {
+    const delete_record = (async (id, amountDeleted) => {
         const response = await fetch( ipAddress + '/deleteEarning', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -81,6 +81,14 @@ const Earnings = () => {
         }).then(() => {
             window.location.reload();
         });
+        const amt = userData.earning
+        sessionStorage.setItem('user_data', JSON.stringify({
+            name: userData.name, id: userData.id,
+            earning: amt - amountDeleted, expense: userData.expense,
+            subscription_type: userData.subscription_type,
+            email: userData.email,
+            mobile_number: userData.mobile_number
+        }));
     });
 
     useEffect(() => {
@@ -177,7 +185,7 @@ const Earnings = () => {
                                             </button>
                                             <button
                                                 className="block px-4 py-2 text-gray-800 hover:bg-gray-100"
-                                                onClick={() => delete_record(selectedRow)}
+                                                onClick={() => delete_record(selectedRow, budgetItem.Amount)}
                                             >
                                                 Delete
                                             </button>

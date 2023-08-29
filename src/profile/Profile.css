@@ -8,6 +8,7 @@
     display: grid;
     grid-gap: 30px; /* Increase spacing between user details */
     margin-top: 20px;
+    color: black;
 }
 
 .user-detail {
@@ -16,6 +17,7 @@
     color: white;
     font-weight: bold;
     font-size: 18px;
+    color: black;
     margin-bottom: 20px; /* Maintain spacing between user details */
 }
 

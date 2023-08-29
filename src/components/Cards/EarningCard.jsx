@@ -5,7 +5,7 @@ import ipAddress from "../../ipAddress.jsx";
 
 const EarningCard = () => {
   const [earnings, setEarnings] = useState(0);
-  const [user_data] = useState(sessionStorage.getItem("user_data"))
+  const [user_data, set_user_data] = useState(sessionStorage.getItem("user_data"))
   const userData = JSON.parse(user_data)
   const request = {
         "id": userData.id
@@ -24,21 +24,12 @@ const EarningCard = () => {
   };
 
   useEffect(() => {
-      setEarnings(userData.earning)
-        // Fetch earnings data from the API
-        // const baseUrl = ipAddress;
-        // async function fetchEarnings() {
-        //     try {
-        //         const totalEarningsResponse = await fetch(baseUrl + '/getTotalEarning', options);
-        //         const totalEarningsData = await totalEarningsResponse.json();
-        //         const totalEarnings = totalEarningsData[0].total_earning;
-        //         setEarnings(totalEarnings);
-        //     } catch (error) {
-        //         console.error("Error fetching earnings:", error);
-        //     }
-        // }
-        // console.log("abc" + earnings)
-        // fetchEarnings();
+      const user_data = sessionStorage.getItem("user_data");
+      set_user_data(user_data)
+      if (user_data) {
+          const userDataObj = JSON.parse(user_data);
+          setEarnings(userDataObj.earning);
+      }
   }, []);
 
   return (

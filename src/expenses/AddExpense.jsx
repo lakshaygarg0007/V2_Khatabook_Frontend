@@ -11,12 +11,17 @@ import Sidebar from "../layout/Sidebar/Sidebar.jsx";
 const AddExpense = () => {
     const navigate = useNavigate();
     const [payment_methods, set_payment_methods] = useState([]);
-    const [amount, set_amount] = useState("");
+    const [amount, set_amount] = useState(null);
     const [description, set_description] = useState("");
     const [date, set_date] = useState("");
     const [payment_method, set_payment_method] = useState("UPI");
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
+
+    const handleAmountChange = (event) => {
+        const inputAmount = event.target.value;
+        set_amount(parseFloat(inputAmount)); // Convert to numeric value and update state
+    };
 
     useEffect(() => {
         async function fetchPaymentMethods() {
@@ -43,22 +48,25 @@ const AddExpense = () => {
         };
 
         const options = {
-            method: "POST",
-            body: JSON.stringify(data),
-            headers: {
+            method: "POST", body: JSON.stringify(data), headers: {
                 "Content-Type": "application/json",
             },
         };
 
         fetch(ipAddress + '/addExpense', options)
             .then(() => {
+                const new_amount = parseFloat(amount) + parseFloat(userData.expense);
+                sessionStorage.setItem('user_data', JSON.stringify({
+                    name: userData.name, id: userData.id, earning: userData.earning, expense: new_amount
+                }));
                 navigate('/expenses');
                 window.location.reload();
             });
     });
 
     return (
-        <><Sidebar/>
+        <>
+            <Sidebar/>
             <div className="main-content">
                 <ContentTop/>
                 <div className="grid-two-item grid-common grid-c4">
@@ -70,8 +78,8 @@ const AddExpense = () => {
                                 id="amount"
                                 className="w-full bg-gray-100 border text-black placeholder-black border-gray-300 rounded py-2 px-3 focus:outline-none focus:ring focus:ring-indigo-200"
                                 placeholder="Amount"
-                                value={amount}
-                                onChange={(e) => set_amount(e.target.value)}
+                                value={amount !== null ? amount.toString() : ''}
+                                onChange={handleAmountChange}
                             />
                         </div>
 
@@ -98,8 +106,7 @@ const AddExpense = () => {
                                 {payment_methods.map(payment_method => (
                                     <option key={payment_method.payment_methods} value={payment_method.payment_methods}>
                                         {payment_method.payment_methods}
-                                    </option>
-                                ))}
+                                    </option>))}
                             </select>
                         </div>
 
@@ -126,8 +133,7 @@ const AddExpense = () => {
                     </div>
                 </div>
             </div>
-        </>
-    );
+        </>);
 };
 
 export default AddExpense;

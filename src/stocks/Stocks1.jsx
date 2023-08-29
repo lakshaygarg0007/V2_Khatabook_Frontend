@@ -72,6 +72,9 @@ const StockCard = () => {
                     ))}
                 </div>
             </div>
+
+
+
         </div>
     );
 };
