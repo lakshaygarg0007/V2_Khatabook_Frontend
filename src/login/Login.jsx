@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ipAddress from "../ipAddress.jsx";
 import "./Login.css"
 import bcrypt from 'bcryptjs';
+import CryptoJS from 'crypto-js';
 
 export default function Login(props) {
     const [email, set_email] = useState("");
@@ -10,13 +11,15 @@ export default function Login(props) {
     const [response, set_response] = useState(null);
     const [error, set_error] = useState(null);
     const saltRounds = 10;
+    const encryptionSecretKey = 'QZUBWuT9Vc6W2xEfMrTnFVEHefULkVBb';
     let navigate = useNavigate();
 
 
     const login = (async () => {
+        const encryptedPassword = CryptoJS.AES.encrypt(password, encryptionSecretKey).toString();
         const data = {
             "email": email,
-            "password": password
+            "password": encryptedPassword
         };
 
         const options = {
