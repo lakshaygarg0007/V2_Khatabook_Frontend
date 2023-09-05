@@ -20,6 +20,7 @@
     "@types/react": "^17.0.38",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "crypto-js": "^4.1.1",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.31",
     "lodash": "^4.17.21",
