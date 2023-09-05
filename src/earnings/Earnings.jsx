@@ -147,6 +147,11 @@ const Earnings = () => {
                     </button>
                 </div>
                 <div className="lg:w-3/3 w-full mx-auto overflow-auto">
+                    {earning.length === 0 ? (
+                            <p className="text-center mt-10 text-xl text-gray-600">
+                                No earnings available. Time to start earning! 💰💼
+                            </p>
+                        ) :
                     <table className="table-auto w-full text-left whitespace-no-wrap">
                         {/* Column headings */}
                         <thead>
@@ -196,7 +201,7 @@ const Earnings = () => {
 
                         ))}
                         </tbody>
-                    </table>
+                    </table> }
 
                     <br></br>
 

@@ -191,7 +191,7 @@ const BoardPage = () => {
                             )}
                         >
                             {board}
-                        </Board>
+                        </Board> )
 
                     </div>
                 </div>

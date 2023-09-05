@@ -168,6 +168,11 @@ const Earnings = ({aspect, title}) => {
 
                     </div>
                     <div className="lg:w-3/3 w-full mx-auto overflow-auto">
+                        {expense.length === 0 ? (
+                                <p className="text-center mt-10 text-xl text-gray-600">
+                                    No expenses available. Keep track of your spending! 💸📉
+                                </p>
+                            ) :
                         <table className="table-auto w-full text-left whitespace-no-wrap">
                             {/* Column headings */}
                             <thead>
@@ -221,7 +226,7 @@ const Earnings = ({aspect, title}) => {
                                 </tr>
                             ))}
                             </tbody>
-                        </table>
+                        </table> }
 
                         <br></br>
 
