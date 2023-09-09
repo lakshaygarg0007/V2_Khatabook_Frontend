@@ -11,7 +11,7 @@ export default function Login(props) {
     const [response, set_response] = useState(null);
     const [error, set_error] = useState(null);
     const saltRounds = 10;
-    const encryptionSecretKey = 'QZUBWuT9Vc6W2xEfMrTnFVEHefULkVBb';
+
     let navigate = useNavigate();
 
 
@@ -39,7 +39,7 @@ export default function Login(props) {
                     { name: json_response.name, id: json_response.id,
                     earning: json_response.earning, expense: json_response.expense,
                         email: json_response.email, subscription_type: json_response.subscription_type,
-                        mobile_number: json_response.mobile_number
+                        mobile_number: json_response.mobile_number, token: json_response.token
                     }));
                 console.log(JSON.parse(sessionStorage.getItem('user_data')))
                 navigate('/', { state: { id: json_response.id, name : json_response.name, earning: json_response.earning,

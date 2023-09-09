@@ -44,6 +44,7 @@ const BoardPage = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${userData.token}`
             },
             body: JSON.stringify({card_id: id, new_status: status})
         }

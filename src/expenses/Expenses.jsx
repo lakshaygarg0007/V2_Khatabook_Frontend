@@ -82,7 +82,11 @@ const Earnings = ({aspect, title}) => {
     const delete_record = (async (id, amountDeleted) => {
         const response = await fetch(ipAddress + '/deleteExpense', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${userData.token}`
+            },
             body: JSON.stringify({expense_id: id}),
         }).then(() => {
             console.log("Record Deleted Successfully")
