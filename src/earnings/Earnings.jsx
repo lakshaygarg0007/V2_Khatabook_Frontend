@@ -43,6 +43,7 @@ const Earnings = () => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${userData.token}`
         },
         body: JSON.stringify({ user_id: userData.id })
     }
@@ -76,7 +77,7 @@ const Earnings = () => {
     const delete_record = (async (id, amountDeleted) => {
         const response = await fetch( ipAddress + '/deleteEarning', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': userData.token, },
             body: JSON.stringify({ earning_id: id }),
         }).then(() => {
             window.location.reload();
