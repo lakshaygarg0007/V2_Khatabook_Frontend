@@ -4,6 +4,7 @@ import ipAddress from "../ipAddress.jsx";
 import "./Login.css"
 import bcrypt from 'bcryptjs';
 import CryptoJS from 'crypto-js';
+import Config from '../config.json'
 
 export default function Login(props) {
     const [email, set_email] = useState("");
@@ -16,7 +17,7 @@ export default function Login(props) {
 
 
     const login = (async () => {
-        const encryptedPassword = CryptoJS.AES.encrypt(password, encryptionSecretKey).toString();
+        const encryptedPassword = CryptoJS.AES.encrypt(password, Config.encryptionSecretKey).toString();
         const data = {
             "email": email,
             "password": encryptedPassword
