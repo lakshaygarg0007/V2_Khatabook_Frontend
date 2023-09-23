@@ -12,11 +12,14 @@ import {iconsImgs} from "../utils/images.js";
 
 const CalenderCard = () => {
     const [calendarData, setCalendarData] = useState(null);
+    const [user_data] = useState(sessionStorage.getItem("user_data"))
+    const userData = JSON.parse(user_data)
 
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${userData.token}`
         },
         body: JSON.stringify({ user_id: "63c3cc724a4ed3fd4bc79cfb" })
     };

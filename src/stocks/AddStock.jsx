@@ -32,6 +32,7 @@ const AddSubscription = () => {
             body: JSON.stringify(data),
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${userData.token}`
             },
         };
 

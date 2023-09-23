@@ -30,6 +30,7 @@ const AddEarning = () => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${userData.token}`
             },
         }
 

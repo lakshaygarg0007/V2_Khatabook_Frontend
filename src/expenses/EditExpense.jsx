@@ -29,6 +29,7 @@ const EditExpense = (props) => {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${userData.token}`
             },
         }
 

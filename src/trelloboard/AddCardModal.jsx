@@ -26,7 +26,11 @@ const AddCardModal = ({ visible, onClose, handleCardAdd, statusData }) => {
         console.log('abc')
         const response = await fetch(ipAddress + '/addBoard', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${userData.token}`
+            },
             body: JSON.stringify({
                 user_id: userData.id,  title: title1, description: detail, status: statusData, date: new Date(),
             }),

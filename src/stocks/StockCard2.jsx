@@ -19,6 +19,7 @@ const StockCard2 = () => {
         body: JSON.stringify(request),
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${userData.token}`
         },
     };
 

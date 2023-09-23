@@ -49,6 +49,7 @@ const Earnings = ({aspect, title}) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${userData.token}`
         },
         body: JSON.stringify({user_id: userData.id})
     }

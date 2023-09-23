@@ -10,15 +10,13 @@ const SubscriptionCard = () => {
     const [user_data] = useState(sessionStorage.getItem("user_data"))
     const userData = JSON.parse(user_data)
 
-    const request1 = {
-        "user_id": userData.id
-    };
 
     const options1 = {
         method: "POST",
-        body: JSON.stringify(request1),
+        body: JSON.stringify({ user_id: userData.id }),
         headers: {
             "Content-Type": "application/json",
+            'Authorization': `Bearer ${userData.token}`
         },
     };
 

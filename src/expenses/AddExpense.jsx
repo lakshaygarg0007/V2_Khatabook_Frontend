@@ -50,6 +50,7 @@ const AddExpense = () => {
         const options = {
             method: "POST", body: JSON.stringify(data), headers: {
                 "Content-Type": "application/json",
+                'Authorization': `Bearer ${userData.token}`
             },
         };
 
